@@ -58,15 +58,23 @@ nav .nav-phone:hover{color:#ffcc00}
 .service-card h3{font-size:1.4rem;margin-bottom:12px;color:#ff9900}
 .service-card p{color:#999;line-height:1.7}
 .service-card .click-hint{margin-top:15px;color:#ff6600;font-size:0.85rem;font-weight:600}
-.detail-section{padding:80px 20px;background:linear-gradient(180deg,#111,#0a0a0a)}
+.detail-section{padding:100px 20px;position:relative;overflow:hidden}
+.detail-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-size:cover;background-position:center;opacity:0.3}
+.detail-section::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(10,10,10,0.7),rgba(10,10,10,0.85))}
+.detail-section>*{position:relative;z-index:1}
 .detail-section h2{font-size:2.5rem;margin-bottom:15px;background:linear-gradient(90deg,#ff6600,#ffcc00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center}
 .detail-content{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
 .detail-img{width:100%;height:100%;min-height:300px;object-fit:cover;border-radius:16px;border:2px solid #333}
+.detail-info{background:rgba(10,10,10,0.8);backdrop-filter:blur(10px);padding:30px;border-radius:16px;border:1px solid #333}
 .detail-info h3{color:#ff9900;font-size:1.3rem;margin-bottom:15px}
-.detail-info p{color:#999;line-height:1.8;margin-bottom:12px}
-.detail-info ul{color:#999;line-height:2;padding-left:20px}
+.detail-info p{color:#ccc;line-height:1.8;margin-bottom:12px}
+.detail-info ul{color:#ccc;line-height:2;padding-left:20px}
 .detail-info .detail-cta{margin-top:20px;display:inline-block;padding:12px 30px;background:linear-gradient(135deg,#ff6600,#ff9900);color:#fff;border-radius:50px;text-decoration:none;font-weight:700;transition:all 0.3s}
 .detail-info .detail-cta:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,102,0,0.4)}
+#tow-detail::before{background-image:url('https://images.unsplash.com/photo-1601584868424-13ff3a31c034?auto=format&fit=crop&w=1920&q=80')}
+#tire-detail::before{background-image:url('https://images.unsplash.com/photo-1532597777543-d2d02f0a4149?auto=format&fit=crop&w=1920&q=80')}
+#jumpstart-detail::before{background-image:url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1920&q=80')}
+#lockout-detail::before{background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80')}
 .gallery-section{padding:100px 20px;background:linear-gradient(180deg,#0a0a0a,#1a0a00);text-align:center}
 .gallery-section h2{font-size:2.8rem;margin-bottom:15px;background:linear-gradient(90deg,#ff6600,#ffcc00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1200px;margin:0 auto}
@@ -312,4 +320,3 @@ document.getElementById('hamburger').classList.remove('active');
 </script>
 </body>
 </html>   
-
