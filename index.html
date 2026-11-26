@@ -14,6 +14,178 @@
             overflow-x: hidden;
         }
 
+        /* HAMBURGER BUTTON */
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #ff6600;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hamburger:hover {
+            background: #ff6600;
+            transform: scale(1.1);
+        }
+
+        .hamburger div {
+            width: 24px;
+            height: 3px;
+            background: #ff9900;
+            margin: 5px 0;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a0a00, #0d0d0d);
+            border-right: 3px solid #ff6600;
+            z-index: 1000;
+            transition: left 0.4s ease;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .sidebar-logo span { color: #ff6600; }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(255, 102, 0, 0.15);
+            border-color: #ff6600;
+            color: #ff9900;
+            transform: translateX(8px);
+        }
+
+        .sidebar-link .link-icon {
+            font-size: 1.4rem;
+        }
+
+        .sidebar-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6600, transparent);
+            margin: 20px 0;
+        }
+
+        .sidebar-phone {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .sidebar-phone:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* NAV BAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px 15px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 998;
+            border-bottom: 2px solid #ff6600;
+        }
+
+        nav .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        nav .nav-logo span { color: #ff6600; }
+
+        nav .nav-phone {
+            color: #ff9900;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav .nav-phone:hover { color: #ffcc00; }
+
+        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -21,16 +193,18 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(-45deg, #ff6600, #ff9900, #ffcc00, #ff6600);
-            background-size: 400% 400%;
-            animation: gradientMove 6s ease infinite;
+            padding: 100px 20px 60px;
+            background: linear-gradient(-45deg, #1a0800, #ff6600, #ff9900, #2a1000, #0a0a0a);
+            background-size: 500% 500%;
+            animation: gradientMove 8s ease infinite;
             position: relative;
         }
 
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 0%; }
+            75% { background-position: 0% 100%; }
             100% { background-position: 0% 50%; }
         }
 
@@ -38,30 +212,41 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.55);
+            background: rgba(0,0,0,0.65);
         }
 
         .hero > * { position: relative; z-index: 1; }
 
         .logo {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             margin-bottom: 10px;
             animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 102, 0, 0.5);
         }
 
-        .logo span { color: #ff9900; }
+        .logo span {
+            color: #ff6600;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.04); }
         }
 
         .tagline {
-            font-size: 1.4rem;
-            color: #ccc;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .tagline-sub {
+            font-size: 1.1rem;
+            color: #ff9900;
+            margin-bottom: 35px;
+            font-weight: 600;
         }
 
         .cta-buttons {
@@ -84,15 +269,14 @@
         }
 
         .btn-primary {
-            background: #ff6600;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
             color: #fff;
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.6);
         }
 
         .btn-primary:hover {
-            background: #ff9900;
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 153, 0, 0.8);
+            box-shadow: 0 0 50px rgba(255, 153, 0, 0.9);
         }
 
         .btn-secondary {
@@ -107,16 +291,26 @@
             transform: translateY(-4px) scale(1.05);
         }
 
+        /* SERVICES */
         .services {
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
-            background: #111;
+            background: linear-gradient(180deg, #0a0a0a, #111);
         }
 
         .services h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #ff9900;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff6600, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services .section-sub {
+            color: #888;
+            margin-bottom: 60px;
+            font-size: 1.1rem;
         }
 
         .service-grid {
@@ -128,46 +322,261 @@
         }
 
         .service-card {
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1a1a1a, #222);
             border: 2px solid #333;
-            border-radius: 16px;
-            padding: 40px 25px;
+            border-radius: 20px;
+            padding: 45px 25px;
             transition: all 0.4s ease;
-            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
         }
 
         .service-card:hover {
-            border-color: #ff9900;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 153, 0, 0.2);
+            border-color: #ff6600;
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(255, 102, 0, 0.3);
         }
 
         .service-card .icon {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 12px;
             color: #ff9900;
         }
 
         .service-card p {
             color: #999;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .why-us {
-            padding: 80px 20px;
+        /* GALLERY */
+        .gallery-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #111, #1a0a00);
             text-align: center;
-            background: linear-gradient(180deg, #111, #1a1a1a);
+        }
+
+        .gallery-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff6600, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-section .subtitle {
+            color: #888;
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 2px solid #222;
+            transition: border-color 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: #ff6600;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay span {
+            color: #ff9900;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* BOOK APPOINTMENT */
+        .booking-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0a0a, #1a0800);
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff6600, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .booking-section .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .booking-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #1a1a1a, #111);
+            border: 2px solid #333;
+            border-radius: 20px;
+            padding: 50px 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .booking-step {
+            margin-bottom: 30px;
+        }
+
+        .booking-step label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff9900;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            text-align: center;
+            background: #0d0d0d;
+            border: 2px solid #333;
+            border-radius: 10px;
+            color: #ccc;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-slot:hover {
+            border-color: #ff6600;
+            color: #ff9900;
+            transform: scale(1.05);
+        }
+
+        .time-slot.selected {
+            background: #ff6600;
+            border-color: #ff6600;
+            color: #fff;
+        }
+
+        .booking-input {
+            width: 100%;
+            padding: 15px 18px;
+            background: #0d0d0d;
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .booking-input:focus {
+            outline: none;
+            border-color: #ff6600;
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .booking-submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.4);
+            margin-top: 10px;
+        }
+
+        .booking-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6);
+        }
+
+        .booking-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
+        /* WHY US */
+        .why-us {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a0800, #0a0a0a);
         }
 
         .why-us h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #ff9900;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            background: linear-gradient(90deg, #ffcc00, #ff6600);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stats {
@@ -177,46 +586,57 @@
             flex-wrap: wrap;
         }
 
-        .stat { text-align: center; }
+        .stat {
+            text-align: center;
+            padding: 30px;
+        }
 
         .stat .number {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            color: #ff6600;
+            background: linear-gradient(135deg, #ff6600, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat .label {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #999;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
+        /* REQUEST FORM */
         .request-section {
-            padding: 80px 20px;
-            background: #0a0a0a;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0a0a, #111);
         }
 
         .request-section h2 {
             text-align: center;
-            font-size: 2.5rem;
-            color: #ff9900;
+            font-size: 2.8rem;
             margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff6600, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .request-section .subtitle {
             text-align: center;
-            color: #999;
-            margin-bottom: 40px;
+            color: #888;
+            margin-bottom: 50px;
             font-size: 1.1rem;
         }
 
         .form-container {
             max-width: 600px;
             margin: 0 auto;
-            background: #1a1a1a;
+            background: linear-gradient(145deg, #1a1a1a, #111);
             border: 2px solid #333;
-            border-radius: 16px;
-            padding: 40px 30px;
+            border-radius: 20px;
+            padding: 50px 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         .form-group {
@@ -235,21 +655,21 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px 16px;
-            background: #111;
+            padding: 15px 18px;
+            background: #0d0d0d;
             border: 2px solid #333;
-            border-radius: 10px;
+            border-radius: 12px;
             color: #fff;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #ff9900;
-            box-shadow: 0 0 10px rgba(255, 153, 0, 0.2);
+            border-color: #ff6600;
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
         }
 
         .form-group textarea {
@@ -260,7 +680,7 @@
         .form-submit {
             width: 100%;
             padding: 18px;
-            background: #ff6600;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
             color: #fff;
             font-size: 1.2rem;
             font-weight: 700;
@@ -268,12 +688,12 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.4);
         }
 
         .form-submit:hover {
-            background: #ff9900;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6);
         }
 
         .form-note {
@@ -283,42 +703,47 @@
             margin-top: 15px;
         }
 
+        /* CTA BANNER */
         .cta-banner {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            background: linear-gradient(-45deg, #ff6600, #ff9900, #ffcc00);
-            background-size: 300% 300%;
-            animation: gradientMove 4s ease infinite;
+            background: linear-gradient(-45deg, #ff6600, #ff9900, #ffcc00, #ff6600);
+            background-size: 400% 400%;
+            animation: gradientMove 5s ease infinite;
         }
 
         .cta-banner h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: #000;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            font-weight: 900;
         }
 
         .cta-banner p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .btn-dark {
             background: #000;
             color: #ff9900;
+            padding: 20px 50px;
+            font-size: 1.3rem;
         }
 
         .btn-dark:hover {
             background: #222;
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
+        /* FOOTER */
         footer {
             background: #0a0a0a;
-            padding: 60px 20px 30px;
+            padding: 80px 20px 30px;
             text-align: center;
-            border-top: 2px solid #ff6600;
+            border-top: 3px solid #ff6600;
         }
 
         .footer-grid {
@@ -326,7 +751,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             max-width: 1000px;
-            margin: 0 auto 40px;
+            margin: 0 auto 50px;
             text-align: left;
         }
 
@@ -334,44 +759,48 @@
             color: #ff9900;
             margin-bottom: 15px;
             font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer-col p, .footer-col a {
-            color: #999;
+            color: #888;
             line-height: 2;
             text-decoration: none;
             display: block;
+            transition: color 0.3s;
         }
 
         .footer-col a:hover { color: #ff9900; }
 
         .footer-bottom {
             border-top: 1px solid #222;
-            padding-top: 20px;
+            padding-top: 25px;
             color: #555;
             font-size: 0.9rem;
         }
 
+        /* STICKY CALL */
         .sticky-call {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #ff6600;
+            background: linear-gradient(135deg, #ff6600, #ff9900);
             color: #fff;
-            padding: 16px 28px;
+            padding: 18px 30px;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 5px 25px rgba(255, 102, 0, 0.6);
+            box-shadow: 0 5px 30px rgba(255, 102, 0, 0.7);
             animation: bounce 2s ease-in-out infinite;
             z-index: 999;
             transition: all 0.3s ease;
         }
 
         .sticky-call:hover {
-            background: #ff9900;
             transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(255, 153, 0, 0.9);
         }
 
         @keyframes bounce {
@@ -379,29 +808,66 @@
             50% { transform: translateY(-8px); }
         }
 
+        /* RESPONSIVE */
         @media (max-width: 600px) {
-            .logo { font-size: 2.5rem; }
+            .logo { font-size: 2.8rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
             .stats { gap: 30px; }
             .form-container { padding: 30px 20px; }
+            .booking-container { padding: 30px 20px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            nav { padding: 12px 15px 12px 80px; }
+            nav .nav-logo { font-size: 1.2rem; }
+            .time-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 <body>
 
+    <!-- HAMBURGER MENU -->
+    <div class="hamburger" id="hamburger" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">MI <span>TOWING</span></div>
+        <a href="#" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+        <a href="#services" class="sidebar-link"><span class="link-icon">🚛</span> Services</a>
+        <a href="#gallery" class="sidebar-link"><span class="link-icon">📸</span> Gallery</a>
+        <a href="#book" class="sidebar-link"><span class="link-icon">📅</span> Book Appointment</a>
+        <a href="#request" class="sidebar-link"><span class="link-icon">📋</span> Request Service</a>
+        <a href="#why" class="sidebar-link"><span class="link-icon">⭐</span> Why Us</a>
+        <div class="sidebar-divider"></div>
+        <a href="tel:9295100338" class="sidebar-phone">📞 (929) 510-0338</a>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- NAV BAR -->
+    <nav>
+        <div class="nav-logo">MI <span>TOWING</span></div>
+        <a href="tel:9295100338" class="nav-phone">📞 (929) 510-0338</a>
+    </nav>
+
     <!-- HERO -->
     <section class="hero">
         <div class="logo">MI <span>TOWING</span></div>
-        <p class="tagline">Michigan's 24/7 Roadside Rescue — We Do It All</p>
+        <p class="tagline">Michigan's 24/7 Roadside Rescue</p>
+        <p class="tagline-sub">Towing • Tires • Jumpstarts • Lockouts — We Do It All</p>
         <div class="cta-buttons">
             <a href="tel:9295100338" class="btn btn-primary">📞 Call Now</a>
-            <a href="#request" class="btn btn-secondary">Request Service</a>
+            <a href="#book" class="btn btn-secondary">Book Appointment</a>
         </div>
     </section>
 
     <!-- SERVICES -->
-    <section class="services">
+    <section class="services" id="services">
         <h2>What We Do</h2>
+        <p class="section-sub">One call handles everything. No runaround, no waiting.</p>
         <div class="service-grid">
             <div class="service-card">
                 <div class="icon">🚛</div>
@@ -426,8 +892,104 @@
         </div>
     </section>
 
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+        <h2>In Action</h2>
+        <p class="subtitle">Real drivers. Real jobs. Here's what we handle every day.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1601584868424-13ff3a31c034?auto=format&fit=crop&w=800&q=80" alt="Tow truck driver loading a car onto flatbed" loading="lazy">
+                <div class="overlay"><span>Flatbed Loading</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da91d7?auto=format&fit=crop&w=800&q=80" alt="Driver securing a vehicle on the truck" loading="lazy">
+                <div class="overlay"><span>Vehicle Securing</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" alt="Tow truck driver on the highway" loading="lazy">
+                <div class="overlay"><span>Highway Response</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80" alt="Heavy duty truck on the road" loading="lazy">
+                <div class="overlay"><span>Heavy Duty Towing</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=800&q=80" alt="Roadside assistance for a stranded driver" loading="lazy">
+                <div class="overlay"><span>Roadside Assistance</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1532597777543-d2d02f0a4149?auto=format&fit=crop&w=800&q=80" alt="Driver working on a car at the roadside" loading="lazy">
+                <div class="overlay"><span>On-Site Help</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK APPOINTMENT -->
+    <section class="booking-section" id="book">
+        <h2>Book an Appointment</h2>
+        <p class="subtitle">Pick a time that works for you. We'll confirm within 5 minutes.</p>
+        <div class="booking-container">
+            <form action="https://formsubmit.co/sammywasam5@gmail.com" method="POST">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_subject" value="New Appointment — MI Towing">
+
+                <div class="booking-step">
+                    <label>Your Name</label>
+                    <input type="text" name="name" class="booking-input" placeholder="John Smith" required>
+                </div>
+
+                <div class="booking-step">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" class="booking-input" placeholder="(929) 510-0338" required>
+                </div>
+
+                <div class="booking-step">
+                    <label>Where Are You?</label>
+                    <input type="text" name="location" class="booking-input" placeholder="I-94 West, Mile 142" required>
+                </div>
+
+                <div class="booking-step">
+                    <label>What Do You Need?</label>
+                    <select name="service" class="booking-input" required>
+                        <option value="" disabled selected>Select a service...</option>
+                        <option value="Towing">🚛 Towing</option>
+                        <option value="Tire Change">🔧 Tire Change</option>
+                        <option value="Jumpstart">🔋 Jumpstart</option>
+                        <option value="Lockout">🔓 Lockout</option>
+                        <option value="Other">🛠️ Something Else</option>
+                    </select>
+                </div>
+
+                <div class="booking-step">
+                    <label>Pick a Time (or select "ASAP" for emergency)</label>
+                    <div class="time-grid">
+                        <div class="time-slot" onclick="selectTime(this)">ASAP</div>
+                        <div class="time-slot" onclick="selectTime(this)">8 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">10 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">12 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">2 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">4 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">6 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">8 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">10 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">12 AM</div>
+                    </div>
+                    <input type="hidden" name="time" id="selectedTime" required>
+                </div>
+
+                <div class="booking-step">
+                    <label>Notes (Optional)</label>
+                    <textarea name="notes" class="booking-input" placeholder="Car color, make/model, any details..." rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="booking-submit">📅 Book My Appointment</button>
+                <p class="booking-note">We'll call to confirm within 5 minutes. For emergencies, call directly.</p>
+            </form>
+        </div>
+    </section>
+
     <!-- WHY US -->
-    <section class="why-us">
+    <section class="why-us" id="why">
         <h2>Why MI Towing?</h2>
         <div class="stats">
             <div class="stat">
@@ -445,10 +1007,10 @@
         </div>
     </section>
 
-    <!-- REQUEST SERVICE FORM -->
+    <!-- REQUEST FORM -->
     <section class="request-section" id="request">
-        <h2>Request Service</h2>
-        <p class="subtitle">Tell us where you are and what you need. We'll call you back fast.</p>
+        <h2>Quick Request</h2>
+        <p class="subtitle">Can't book a time? Just tell us what you need and we'll call back fast.</p>
         <div class="form-container">
             <form action="https://formsubmit.co/sammywasam5@gmail.com" method="POST">
                 <input type="text" name="_honey" style="display:none">
@@ -466,7 +1028,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Where Are You? (Address, intersection, or highway + mile marker)</label>
+                    <label>Where Are You?</label>
                     <input type="text" name="location" placeholder="I-94 West, Mile 142" required>
                 </div>
 
@@ -532,6 +1094,21 @@
 
     <!-- STICKY CALL BUTTON -->
     <a href="tel:9295100338" class="sticky-call">📞 Call Now</a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('show');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+
+        function selectTime(el) {
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('selectedTime').value = el.textContent;
+        }
+    </script>
 
 </body>
 </html>   
