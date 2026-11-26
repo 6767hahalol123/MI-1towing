@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI Towing — 24/7 Roadside Rescue, Michigan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(-45deg, #ff6600, #ff9900, #ffcc00, #ff6600);
+            background-size: 400% 400%;
+            animation: gradientMove 6s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.55);
+        }
+
+        .hero > * { position: relative; z-index: 1; }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .logo span { color: #ff9900; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #ff6600;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+        }
+
+        .btn-primary:hover {
+            background: #ff9900;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 153, 0, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 3px solid #ff9900;
+        }
+
+        .btn-secondary:hover {
+            background: #ff9900;
+            color: #000;
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .services {
+            padding: 80px 20px;
+            text-align: center;
+            background: #111;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ff9900;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 40px 25px;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .service-card:hover {
+            border-color: #ff9900;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 153, 0, 0.2);
+        }
+
+        .service-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #ff9900;
+        }
+
+        .service-card p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .why-us {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #111, #1a1a1a);
+        }
+
+        .why-us h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ff9900;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat { text-align: center; }
+
+        .stat .number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff6600;
+        }
+
+        .stat .label {
+            font-size: 1rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .request-section {
+            padding: 80px 20px;
+            background: #0a0a0a;
+        }
+
+        .request-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff9900;
+            margin-bottom: 15px;
+        }
+
+        .request-section .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff9900;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff9900;
+            box-shadow: 0 0 10px rgba(255, 153, 0, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: #ff6600;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: #ff9900;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
+        .cta-banner {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(-45deg, #ff6600, #ff9900, #ffcc00);
+            background-size: 300% 300%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.2rem;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .btn-dark {
+            background: #000;
+            color: #ff9900;
+        }
+
+        .btn-dark:hover {
+            background: #222;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        footer {
+            background: #0a0a0a;
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 2px solid #ff6600;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: #ff9900;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-col a:hover { color: #ff9900; }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .sticky-call {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff6600;
+            color: #fff;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(255, 102, 0, 0.6);
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-call:hover {
+            background: #ff9900;
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 2.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .stats { gap: 30px; }
+            .form-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="logo">MI <span>TOWING</span></div>
+        <p class="tagline">Michigan's 24/7 Roadside Rescue — We Do It All</p>
+        <div class="cta-buttons">
+            <a href="tel:9295100338" class="btn btn-primary">📞 Call Now</a>
+            <a href="#request" class="btn btn-secondary">Request Service</a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services">
+        <h2>What We Do</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon">🚛</div>
+                <h3>Towing</h3>
+                <p>Flatbed, wheel-lift, heavy-duty. We tow everything — cars, trucks, motorcycles, even RVs.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔧</div>
+                <h3>Tire Change</h3>
+                <p>Flat on the highway? We swap it out fast so you're back on the road in minutes.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔋</div>
+                <h3>Jumpstart</h3>
+                <p>Dead battery? We get you moving in under 10 minutes. No need to wait for a tow.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔓</div>
+                <h3>Lockout</h3>
+                <p>Locked your keys inside? We get you back in with zero damage to your vehicle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-us">
+        <h2>Why MI Towing?</h2>
+        <div class="stats">
+            <div class="stat">
+                <div class="number">24/7</div>
+                <div class="label">Always Available</div>
+            </div>
+            <div class="stat">
+                <div class="number">15 min</div>
+                <div class="label">Avg. Response Time</div>
+            </div>
+            <div class="stat">
+                <div class="number">100%</div>
+                <div class="label">Job Done Right</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUEST SERVICE FORM -->
+    <section class="request-section" id="request">
+        <h2>Request Service</h2>
+        <p class="subtitle">Tell us where you are and what you need. We'll call you back fast.</p>
+        <div class="form-container">
+            <form action="https://formsubmit.co/sammywasam5@gmail.com" method="POST">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_subject" value="New Service Request — MI Towing">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" placeholder="John Smith" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" placeholder="(929) 510-0338" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Where Are You? (Address, intersection, or highway + mile marker)</label>
+                    <input type="text" name="location" placeholder="I-94 West, Mile 142" required>
+                </div>
+
+                <div class="form-group">
+                    <label>What Do You Need?</label>
+                    <select name="service" required>
+                        <option value="" disabled selected>Select a service...</option>
+                        <option value="Towing">🚛 Towing</option>
+                        <option value="Tire Change">🔧 Tire Change</option>
+                        <option value="Jumpstart">🔋 Jumpstart</option>
+                        <option value="Lockout">🔓 Lockout</option>
+                        <option value="Other">🛠️ Something Else</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Anything Else? (Optional)</label>
+                    <textarea name="notes" placeholder="Car color, make/model, any details..."></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Request →</button>
+                <p class="form-note">We'll call you back within minutes. For emergencies, call us directly.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Stuck Right Now? Don't Wait.</h2>
+        <p>One call and we're on our way. No hidden fees. No runaround.</p>
+        <a href="tel:9295100338" class="btn btn-dark">📞 (929) 510-0338</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>MI Towing</h4>
+                <p>24/7 Roadside Rescue<br>Michigan, USA</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Towing</a>
+                <a href="#">Tire Change</a>
+                <a href="#">Jumpstart</a>
+                <a href="#">Lockout</a>
+            </div>
+            <div class="footer-col">
+                <h4>Service Area</h4>
+                <p>Greater Metro Detroit<br>Ann Arbor<br>Lansing<br>All of Michigan</p>
+            </div>
+            <div class="footer-col">
+                <h4>Get In Touch</h4>
+                <a href="tel:9295100338">📞 (929) 510-0338</a>
+                <a href="mailto:sammywasam5@gmail.com">✉️ sammywasam5@gmail.com</a>
+                <p>🕐 Open 24/7 — 365 days a year</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 MI Towing. All rights reserved. | Michigan, USA
+        </div>
+    </footer>
+
+    <!-- STICKY CALL BUTTON -->
+    <a href="tel:9295100338" class="sticky-call">📞 Call Now</a>
+
+</body>
+</html>   
